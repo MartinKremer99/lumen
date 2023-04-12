@@ -60,10 +60,10 @@ class AdminController extends Controller
         $information->save();
 
         // create the admin with his new information
-        Admin::create(['information_id' => $information->id]);
+        $admin = Admin::create(['information_id' => $information->id]);
 
         // get the admin with his relation to information
-        $admin = Admin::with('information')->get();
+        $admin = Admin::with('information')->find($admin->id);
 
         // return the admin as json, the hidden property on the model 
         // removes these fields from the respone
